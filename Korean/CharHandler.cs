@@ -17,9 +17,15 @@ namespace yuisanae2f.CharCraftableCS.Korean
 
         public char underVowel
         {
-            get { return UNDER_VOWELS[_un]; }
+            get { return _un == -1 ? ' ' : UNDER_VOWELS[_un]; }
             set
             {
+                if (value == ' ')
+                {
+                    this.value = ' ';
+                    return;
+                }
+
                 int i = 0;
                 if (!UNDER_VOWELS.Contains(value)) return;
                 for (char c = value; UNDER_VOWELS[i] != c; i++) { }
@@ -32,9 +38,15 @@ namespace yuisanae2f.CharCraftableCS.Korean
 
         public char vowel
         {
-            get { return VOWELS[_v]; }
+            get { return _un == -1 ? ' ' : VOWELS[_v]; }
             set
             {
+                if (value == ' ')
+                {
+                    this.value = ' ';
+                    return;
+                }
+
                 int i = 0;
                 if (!VOWELS.Contains(value)) return;
                 for (char c = value; VOWELS[i] != c; i++) { }
@@ -47,9 +59,15 @@ namespace yuisanae2f.CharCraftableCS.Korean
 
         public char upperVowel
         {
-            get { return UPPER_VOWELS[_up]; }
+            get { return _un == -1 ? ' ' : UPPER_VOWELS[_up]; }
             set
             {
+                if(value == ' ')
+                {
+                    this.value = ' ';
+                    return;
+                }
+
                 int i = 0;
                 if (!UPPER_VOWELS.Contains(value)) return;
                 for (char c = value; UPPER_VOWELS[i] != c; i++) { }
@@ -65,6 +83,13 @@ namespace yuisanae2f.CharCraftableCS.Korean
             get { return _c; }
             set
             {
+                if (value == ' ')
+                {
+                    _un = _v = _up = -1;
+                    _c = ' ';
+                    return;
+                }
+
                 _c = value;
                 int _ = _c - '가';
                 _un = _ % UNDER_VOWELS.Length;
@@ -77,7 +102,27 @@ namespace yuisanae2f.CharCraftableCS.Korean
             }
         }
 
-        public string shredded { get { return upperVowel.ToString() + vowel.ToString() + underVowel.ToString(); } }
+        public static bool isKorean(string shredded)
+        {
+            return 
+                shredded.Length == 3
+                && UPPER_VOWELS.Contains(shredded[0])
+                && VOWELS.Contains(shredded[1])
+                && UNDER_VOWELS.Contains(shredded[2]);
+        }
+
+        public string shredded { 
+            get { return upperVowel.ToString() + vowel.ToString() + underVowel.ToString(); } 
+            set
+            {
+                string _ = value;
+                if (!isKorean(_)) return;
+
+                upperVowel = _[0];
+                vowel = _[1];
+                underVowel = _[2];
+            }
+        }
 
         public CharHandler(char c)
         {
