@@ -17,7 +17,7 @@ namespace yuisanae2f.CharCraftableCS.Korean
 
         public char underVowel
         {
-            get { return _c == ' ' ? ' ' : UNDER_VOWELS[_un]; }
+            get { return _un == -1 ? ' ' : UNDER_VOWELS[_un]; }
             set
             {
                 int i = 0;
@@ -32,7 +32,7 @@ namespace yuisanae2f.CharCraftableCS.Korean
 
         public char vowel
         {
-            get { return _c == ' ' ? ' ' : VOWELS[_v]; }
+            get { return _v == -1 ? ' ' : VOWELS[_v]; }
             set
             {
                 if (value == ' ')
@@ -53,7 +53,9 @@ namespace yuisanae2f.CharCraftableCS.Korean
 
         public char upperVowel
         {
-            get { return _c == ' ' ? ' ' : UPPER_VOWELS[_up]; }
+            get {
+                return _up == -1 ? ' ' : UPPER_VOWELS[_up]; 
+            }
             set
             {
                 if(value == ' ')
@@ -108,10 +110,19 @@ namespace yuisanae2f.CharCraftableCS.Korean
         }
 
         public string shredded { 
-            get { return upperVowel.ToString() + vowel.ToString() + underVowel.ToString(); } 
+            get { 
+                return _c == ' ' ? "   " : upperVowel.ToString() + vowel.ToString() + underVowel.ToString(); 
+            } 
             set
             {
                 string _ = value;
+                if (value == "   ")
+                {
+                    _v = _up = _un = -1;
+                    _c = ' ';
+                    return;
+                }
+
                 if (!isKorean(_)) return;
 
                 upperVowel = _[0];

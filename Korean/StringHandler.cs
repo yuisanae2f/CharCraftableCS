@@ -26,12 +26,12 @@ namespace yuisanae2f.CharCraftableCS.Korean
 
                 for(int i = 0; i < len; i+=3)
                 {
-                    CharHandler __ = new CharHandler('나');
-                    if(!(CharHandler.isKorean(_[i + 0].ToString() + _[i + 1].ToString() + _[i + 2].ToString()))) return;
-                    __.upperVowel = _[i + 0];
-                    __.vowel = _[i + 1];
-                    __.underVowel = _[i + 2];
-                    r.Add(__);
+                    string test = _[i + 0].ToString() + _[i + 1].ToString() + _[i + 2].ToString();
+
+                    CharHandler c = new CharHandler('가');
+                    c.shredded = test;
+
+                    r.Add( c );
                 }
 
                 _str = r.ToArray();
@@ -64,7 +64,7 @@ namespace yuisanae2f.CharCraftableCS.Korean
         public StringHandler(string str)
         {
             List<CharHandler> _ = new List<CharHandler>();
-            foreach (char c in str) { _.Add(new(c)); }
+            foreach (char c in str.ToCharArray()) { _.Add(new(c)); }
             _str = _.ToArray();
         }
 
