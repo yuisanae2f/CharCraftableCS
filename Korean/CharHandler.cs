@@ -17,15 +17,9 @@ namespace yuisanae2f.CharCraftableCS.Korean
 
         public char underVowel
         {
-            get { return _un == -1 ? ' ' : UNDER_VOWELS[_un]; }
+            get { return _c == ' ' ? ' ' : UNDER_VOWELS[_un]; }
             set
             {
-                if (value == ' ')
-                {
-                    this.value = ' ';
-                    return;
-                }
-
                 int i = 0;
                 if (!UNDER_VOWELS.Contains(value)) return;
                 for (char c = value; UNDER_VOWELS[i] != c; i++) { }
@@ -38,7 +32,7 @@ namespace yuisanae2f.CharCraftableCS.Korean
 
         public char vowel
         {
-            get { return _un == -1 ? ' ' : VOWELS[_v]; }
+            get { return _c == ' ' ? ' ' : VOWELS[_v]; }
             set
             {
                 if (value == ' ')
@@ -59,7 +53,7 @@ namespace yuisanae2f.CharCraftableCS.Korean
 
         public char upperVowel
         {
-            get { return _un == -1 ? ' ' : UPPER_VOWELS[_up]; }
+            get { return _c == ' ' ? ' ' : UPPER_VOWELS[_up]; }
             set
             {
                 if(value == ' ')
@@ -85,7 +79,7 @@ namespace yuisanae2f.CharCraftableCS.Korean
             {
                 if (value == ' ')
                 {
-                    _un = _v = _up = -1;
+                    _v = _up = _un = -1;
                     _c = ' ';
                     return;
                 }
@@ -108,7 +102,9 @@ namespace yuisanae2f.CharCraftableCS.Korean
                 shredded.Length == 3
                 && UPPER_VOWELS.Contains(shredded[0])
                 && VOWELS.Contains(shredded[1])
-                && UNDER_VOWELS.Contains(shredded[2]);
+                && UNDER_VOWELS.Contains(shredded[2])
+                || shredded[0] == ' ' && shredded[1] == ' ' && shredded[2] == ' '
+                ;
         }
 
         public string shredded { 
