@@ -17,11 +17,17 @@ namespace yuisanae2f.CharCraftableCS.Korean
 
         public char underVowel
         {
-            get { return _un == -1 ? ' ' : UNDER_VOWELS[_un]; }
+            get { return _un == -1 ? _c : UNDER_VOWELS[_un]; }
             set
             {
                 int i = 0;
-                if (!UNDER_VOWELS.Contains(value)) return;
+                if (!UNDER_VOWELS.Contains(value))
+                {
+                    this.value = value;
+                    _un = -1;
+                    return;
+                }
+
                 for (char c = value; UNDER_VOWELS[i] != c; i++) { }
 
                 this.value = (char)(this.value + i - _un);
@@ -32,17 +38,16 @@ namespace yuisanae2f.CharCraftableCS.Korean
 
         public char vowel
         {
-            get { return _v == -1 ? ' ' : VOWELS[_v]; }
+            get { return _v == -1 ? _c : VOWELS[_v]; }
             set
             {
-                if (value == ' ')
-                {
-                    this.value = ' ';
+                int i = 0;
+                if (!VOWELS.Contains(value)) {
+                    this.value = value;
+                    _v = -1;
                     return;
                 }
 
-                int i = 0;
-                if (!VOWELS.Contains(value)) return;
                 for (char c = value; VOWELS[i] != c; i++) { }
 
                 this.value = (char)(this.value + UNDER_VOWELS.Length * (i - _v));
@@ -54,18 +59,18 @@ namespace yuisanae2f.CharCraftableCS.Korean
         public char upperVowel
         {
             get {
-                return _up == -1 ? ' ' : UPPER_VOWELS[_up]; 
+                return _up == -1 ? _c : UPPER_VOWELS[_up]; 
             }
             set
             {
-                if(value == ' ')
+                int i = 0;
+                if (!UPPER_VOWELS.Contains(value))
                 {
-                    this.value = ' ';
+                    this.value = value;
+                    _up = -1;
                     return;
                 }
 
-                int i = 0;
-                if (!UPPER_VOWELS.Contains(value)) return;
                 for (char c = value; UPPER_VOWELS[i] != c; i++) { }
 
                 this.value = (char)(this.value + VOWELS.Length * UNDER_VOWELS.Length * (i - _up));
@@ -79,10 +84,10 @@ namespace yuisanae2f.CharCraftableCS.Korean
             get { return _c; }
             set
             {
-                if (value == ' ')
+                if (value < '가' || value > '힣')
                 {
+                    _c = value;
                     _v = _up = _un = -1;
-                    _c = ' ';
                     return;
                 }
 
@@ -105,25 +110,25 @@ namespace yuisanae2f.CharCraftableCS.Korean
                 && UPPER_VOWELS.Contains(shredded[0])
                 && VOWELS.Contains(shredded[1])
                 && UNDER_VOWELS.Contains(shredded[2])
-                || shredded[0] == ' ' && shredded[1] == ' ' && shredded[2] == ' '
                 ;
         }
 
         public string shredded { 
-            get { 
-                return _c == ' ' ? "   " : upperVowel.ToString() + vowel.ToString() + underVowel.ToString(); 
+            get {
+                if (_c < '가' || _c > '힣') return "  " + _c.ToString();
+                return upperVowel.ToString() + vowel.ToString() + underVowel.ToString(); 
             } 
             set
             {
                 string _ = value;
-                if (value == "   ")
+                if (_.Length != 3 || !isKorean(_)) return;
+
+                if (_[0] == ' ' && _[1] == ' ')
                 {
                     _v = _up = _un = -1;
-                    _c = ' ';
+                    _c = _[2];
                     return;
                 }
-
-                if (!isKorean(_)) return;
 
                 upperVowel = _[0];
                 vowel = _[1];
@@ -131,9 +136,9 @@ namespace yuisanae2f.CharCraftableCS.Korean
             }
         }
 
-        public CharHandler(char c)
+        public CharHandler(char c) 
         {
-            value = c;
+            value = c; 
         }
     }
 }
