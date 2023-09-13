@@ -115,15 +115,15 @@ namespace yuisanae2f.CharCraftableCS.Korean
 
         public string shredded { 
             get {
-                if (_c < '가' || _c > '힣') return "  " + _c.ToString();
+                if (_c < '가' || _c > '힣') return _c.ToString()+ _c.ToString()+ _c.ToString();
                 return upperVowel.ToString() + vowel.ToString() + underVowel.ToString(); 
             } 
             set
             {
                 string _ = value;
-                if (_.Length != 3 || !isKorean(_)) return;
+                if (_.Length != 3) return;
 
-                if (_[0] == ' ' && _[1] == ' ')
+                if (_[0] == _[1] && _[1] == _[2])
                 {
                     _v = _up = _un = -1;
                     _c = _[2];
