@@ -9,7 +9,7 @@
         /// <summary>
         /// The shredded string which display the compose of <see cref="value"/>
         /// </summary>
-        public string shredded { get; }
+        public string shredded { get; set; }
 
         /// <summary>
         /// The raw value craftable given.

@@ -8,21 +8,45 @@
     <link rel="stylesheet" href="./global.css">
 </head>
 <body>
-    <h1><a href="" class="reservedKey">public</a> <a href="" class="reservedKey">interface</a> <a href="https://yuisanae2f.github.io/YuiSanae2f/yuisanae2f.html">yuisanae2f</a>.<a href="https://github.com/Louibooks/CharCraftableCS">CharCraftableCS</a>.<span class="generic">Craftable</span>&lt;<span class="generic">T</span>&gt;</h1>
+    <h1><a href="https://yuisanae2f.github.io/YuiSanae2f/dictionary/class/public" class="reservedKey">public</a> <a href="https://yuisanae2f.github.io/YuiSanae2f/dictionary/class/interface" class="reservedKey">interface</a> <a href="https://yuisanae2f.github.io/YuiSanae2f/yuisanae2f">yuisanae2f</a>.<a href="https://github.com/Louibooks/CharCraftableCS">CharCraftableCS</a>.<span class="generic">Craftable</span>&lt;<span class="generic">T</span>&gt;</h1>
     
     <h2 id="T" class="generic">T</h2>
     <div class="indent box">
+        <div class="box">
+            <span id="T[0]"><a href="#T" class="generic">해당 자료형</a>은 <a href="" class="mark">이 인터페이스</a>가 값을 문자로 받는가, 문자열로 받는가를 결정합니다.</span><br>
+            <span id="T[1]"><a href="" class="mark">이 인터페이스</a>는 여러 국가의 조합 가능한 문자를 요소 단위로 쪼개는 기능의 기초입니다.</span>
+        </div>
 
+        <div class="box">
+            <span id="T.char[0]">
+                <a href="https://yuisanae2f.github.io/YuiSanae2f/dictionary/dataType/integer#char" class="reservedKey">char</a>일 경우:
+                <a href="#value" class="mark">해당 인터페이스의 값</a>은 <a href="https://yuisanae2f.github.io/YuiSanae2f/dictionary/dataType/integer#char" class="mark">문자 하나</a>가 될 것입니다.
+            </span>
+        </div>
+
+        <div class="box">
+            <span id="T.string[0]">
+                <a href="https://yuisanae2f.github.io/YuiSanae2f/dictionary/pointer/array/string" class="reservedKey">string</a>일 경우:
+                <a href="#value" class="mark">해당 인터페이스의 값</a>은 <a href="https://yuisanae2f.github.io/YuiSanae2f/dictionary/pointer/array/string" class="mark">문자 여럿</a>이 될 것입니다.
+            </span>
+        </div>
+    </div>
+
+    <h2 id="value"><a href="https://yuisanae2f.github.io/YuiSanae2f/dictionary/class/public" class="reservedKey">public</a> <a href="#T" class="generic">T</a> value { <a href="https://yuisanae2f.github.io/YuiSanae2f/dictionary/class/get" class="reservedKey">get</a>; <a href="https://yuisanae2f.github.io/YuiSanae2f/dictionary/class/set" class="reservedKey">set</a>; }</h2>
+    <div class="indent box">
+        <span id="value[0]">원본이 저장되는 곳입니다.</span>
+        <span id="value[1]"></span>
     </div>
     
-    <h2 id="shredded">public string shredded { get; }</h2>
+    <h2 id="shredded"><a href="https://yuisanae2f.github.io/YuiSanae2f/dictionary/class/public" class="reservedKey">public</a> <a href="https://yuisanae2f.github.io/YuiSanae2f/dictionary/pointer/array/string" class="reservedKey">string</a> shredded { <a href="#shredded.get" class="reservedKey">get</a>; <a href="#shredded.set" class="reservedKey">set</a>; }</h2>
     <div class="indent box">
-        
-    </div>
+        <h3 id="shredded.get"><a href="https://yuisanae2f.github.io/YuiSanae2f/dictionary/class/get" class="reservedKey">get</a></h3>
+        <div class="box">
+            <a href="#value">value</a>의 값을 음절 단위로 나누어 <a href="https://yuisanae2f.github.io/YuiSanae2f/dictionary/pointer/array/string" class="reservedKey">string</a> 형태로 반환합니다.
+        </div>
 
-    <h2 id="value">public <a href="#T" class="generic">T</a> value { get; set; }</h2>
-    <div class="indent box">
-
+        <h3 id="shredded.get"><a href="https://yuisanae2f.github.io/YuiSanae2f/dictionary/class/set" class="reservedKey">set</a></h3>
+        <div class="box"></div>
     </div>
 </body>
 <script src="./global.js"></script>
